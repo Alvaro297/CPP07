@@ -9,10 +9,19 @@ private:
 	unsigned int n;
 public:
 	Array();
+	Array(const Array& arrayCopy);
 	Array(unsigned int newSize);
 	Array& operator=(const Array& arrayCopy);
+	T& operator[](unsigned int index);
+	const T& Array<T>::operator[](unsigned int index) const;
 	unsigned int size() const;
 	~Array();
+
+	class IndexOutClass : public std::exception
+	{
+		public:
+			const char* what() const throw() { return "You're out of array"; };
+	}
 };
 
 
