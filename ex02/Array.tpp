@@ -24,10 +24,20 @@ Array<T>::Array(unsigned int newSize) : n(newSize)
 template <typename T>
 Array<T>& Array<T>::operator=(const Array<T>& arrayCopy)
 {
-	if(arrayCopy != this)
+	if (this != &arrayCopy)
 	{
-		
+		this->n = arrayCopy.n
+		delete [] this->_data;
+		if (arrayCopy.n > 0)
+		{
+			new this->_data = new T[this->n];
+			for (size_t i = 0; i < n; i++)
+				this->_data[i] = arrayCopy->_data[i]
+		}
+		else
+			this->_data = NULL;
 	}
+	return *this;
 }
 
 template <typename T>
