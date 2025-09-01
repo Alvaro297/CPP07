@@ -7,8 +7,7 @@ Array<T>::Array() : n(0)
 	if (n <= 0)
 		this->_data = NULL;
 	else
-		this->_data = new T[this.n];
-	return NULL;
+		this->_data = new T[this->n];
 }
 
 template <typename T>
@@ -18,8 +17,7 @@ Array<T>::Array(unsigned int newSize) : n(newSize)
 	if (n <= 0)
 		this->_data = NULL;
 	else
-		this->_data = new T[this.n];
-	return NULL;
+		this->_data = new T[this->n];
 }
 
 template <typename T>
@@ -27,17 +25,19 @@ Array<T>& Array<T>::operator=(const Array<T>& arrayCopy)
 {
 	if (this != &arrayCopy)
 	{
-		this->n = arrayCopy.n
+		this->n = arrayCopy.n;
+		if(this->_data)
+			delete [] this->_data;
 		if (arrayCopy.n > 0)
 		{
-			new this->_data = new T[this->n];
+			this->_data = new T[this->n];
 			for (size_t i = 0; i < n; i++)
-				this->_data[i] = arrayCopy->_data[i]
+				this->_data[i] = arrayCopy._data[i];
 		}
 		else
 			this->_data = NULL;
 	}
-	return *this;
+	return (*this);
 }
 
 template <typename T>
@@ -45,17 +45,17 @@ Array<T>::Array(const Array<T>& arrayCopy)
 {
 	if (this != &arrayCopy)
 	{
-		this->n = arrayCopy.n
-		if(this->_data)
-			delete [] this->_data;
+		this->n = arrayCopy.n;
 		if (arrayCopy.n > 0)
 		{
 			this->_data = new T[this->n];
 			for (size_t i = 0; i < n; i++)
-				this->_data[i] = arrayCopy->_data[i]
+				this->_data[i] = arrayCopy._data[i];
 		}
 		else
+		{
 			this->_data = NULL;
+		}
 	}
 }
 
@@ -67,14 +67,14 @@ Array<T>::~Array()
 }
 
 template <typename T>
-unsigned int Array<T>::size() const{ return (this->n) }
+unsigned int Array<T>::size() const{ return (this->n); }
 
 template <typename T>
 T& Array<T>::operator[](unsigned int index)
 {
 	if (index >= this->n)
 		throw IndexOutClass();
-	return this->_data[index];
+	return (this->_data[index]);
 }
 
 template <typename T>
@@ -82,5 +82,5 @@ const T& Array<T>::operator[](unsigned int index) const
 {
 	if (index >= this->n)
 		throw IndexOutClass();
-	return this->_data[index];
+	return (this->_data[index]);
 }
